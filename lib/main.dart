@@ -52,9 +52,13 @@ class MyApp extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            backgroundColor: Colors.grey.shade100,
-            selectedColor: const Color(0xFF6750A4).withValues(alpha: 0.2),
-            labelStyle: const TextStyle(fontSize: 14),
+            backgroundColor: const Color(0xFF6750A4).withValues(alpha: 0.08),
+            selectedColor: const Color(0xFF6750A4),
+            labelStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            side: BorderSide.none,
+            elevation: 0,
+            pressElevation: 2,
+            showCheckmark: false,
           ),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(

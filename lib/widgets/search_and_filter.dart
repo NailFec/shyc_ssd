@@ -118,15 +118,36 @@ class _FilterChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    
     return FilterChip(
-      label: Text(label),
+      label: Text(
+        label,
+        style: TextStyle(
+          color: selected 
+            ? colorScheme.onPrimary 
+            : colorScheme.onSurface,
+          fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
+          fontSize: 14,
+        ),
+      ),
       selected: selected,
       onSelected: onSelected,
       showCheckmark: false,
-      selectedColor: Theme.of(context).colorScheme.primaryContainer,
-      checkmarkColor: Theme.of(context).colorScheme.onPrimaryContainer,
-      elevation: selected ? 2 : 0,
-      pressElevation: 4,
+      selectedColor: colorScheme.primary,
+      backgroundColor: colorScheme.surfaceContainerHighest,
+      checkmarkColor: colorScheme.onPrimary,
+      elevation: selected ? 3 : 0,
+      pressElevation: 6,
+      side: BorderSide.none,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      avatar: selected ? Icon(
+        Icons.check,
+        size: 16,
+        color: colorScheme.onPrimary,
+      ) : null,
     );
   }
 } 
