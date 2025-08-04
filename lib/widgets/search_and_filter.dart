@@ -39,13 +39,6 @@ class SearchAndFilterSection extends StatelessWidget {
                 spacing: 8,
                 runSpacing: 8,
                 children: [
-                  _FilterChip(
-                    label: '全部考试',
-                    selected: provider.selectedExam == 'all',
-                    onSelected: (selected) {
-                      if (selected) provider.updateSelectedExam('all');
-                    },
-                  ),
                   ...provider.allExamInfo.map((exam) => _FilterChip(
                     label: exam.name,
                     selected: provider.selectedExam == exam.id,
@@ -95,15 +88,15 @@ class SearchAndFilterSection extends StatelessWidget {
     // Handle special cases
     switch (subject) {
       case '六门折算总分':
-        return '按六门折算总分排名';
+        return '六门折算总分';
       case '总分':
-        return '按总分排名';
+        return '总分';
       case '语数英总分':
-        return '按语数英总分排名';
+        return '语数英总分';
       default:
         // Remove 等级 suffix for display if present
         final normalizedSubject = ExamDataService.getNormalizedSubjectName(subject);
-        return '按$normalizedSubject排名';
+        return normalizedSubject;
     }
   }
 }

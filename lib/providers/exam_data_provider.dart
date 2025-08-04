@@ -11,8 +11,8 @@ class ExamDataProvider with ChangeNotifier {
   ExamStats? _stats;
   
   String _searchTerm = '';
-  String _selectedExam = 'all';
-  String _sortBy = 'rank-总分';
+  String _selectedExam = '256'; // 默认选择最后一个考试（高二下期末）
+  String _sortBy = 'rank-六门折算总分';
   
   bool _isLoading = false;
   String? _error;
@@ -116,15 +116,7 @@ class ExamDataProvider with ChangeNotifier {
 
   // Apply all filters
   void _applyFilters() {
-    List<ExamData> allExamData = [];
-    
-    if (_selectedExam == 'all') {
-      for (final examData in _allData.values) {
-        allExamData.addAll(examData);
-      }
-    } else {
-      allExamData = _allData[_selectedExam] ?? [];
-    }
+    List<ExamData> allExamData = _allData[_selectedExam] ?? [];
 
     _filteredData = _service.filterData(
       data: allExamData,
@@ -157,11 +149,6 @@ class ExamDataProvider with ChangeNotifier {
 
   // Get subjects for the currently selected exam
   List<String> getCurrentExamSubjects() {
-    if (_selectedExam == 'all') {
-      // For "all" exams, return all subjects
-      return _subjects;
-    }
-    
     // For specific exam, get subjects from that exam's data
     final examData = _allData[_selectedExam] ?? [];
     final Set<String> examSubjects = {};
@@ -180,11 +167,6 @@ class ExamDataProvider with ChangeNotifier {
 
   // Get subjects for the currently selected exam in CSV order
   List<String> getCurrentExamSubjectsInOrder() {
-    if (_selectedExam == 'all') {
-      // For "all" exams, return all subjects sorted
-      return _subjects;
-    }
-    
     // For specific exam, return subjects in CSV order
     return _subjectOrders[_selectedExam] ?? [];
   }

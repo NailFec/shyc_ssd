@@ -115,7 +115,6 @@ class _ExamDataTableState extends State<ExamDataTable> {
                 scrollDirection: Axis.horizontal,
                 child: DataTable(
                   columns: [
-                    const DataColumn(label: Text('排名')),
                     const DataColumn(label: Text('学号')),
                     const DataColumn(label: Text('姓名')),
                     ...displaySubjects.map((subject) => 
@@ -132,7 +131,6 @@ class _ExamDataTableState extends State<ExamDataTable> {
                     
                     return DataRow(
                       cells: [
-                        DataCell(Text(globalIndex.toString())),
                         DataCell(Text(exam.studentId)),
                         DataCell(Text(exam.name)),
                         ...displaySubjects.map((subject) => 
