@@ -125,9 +125,9 @@ class _ExamDataTableState extends State<ExamDataTable> {
                     ),
                   ],
                   rows: pageData.asMap().entries.map((entry) {
-                    final index = entry.key;
+                    // final index = entry.key;
                     final exam = entry.value;
-                    final globalIndex = startIndex + index + 1;
+                    // final globalIndex = startIndex + index + 1;
                     
                     return DataRow(
                       cells: [

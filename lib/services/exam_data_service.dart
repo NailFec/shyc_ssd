@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/services.dart';
 import 'package:csv/csv.dart';
 import '../models/exam_data.dart';
@@ -95,7 +96,7 @@ class ExamDataService {
         final data = await loadExamData(exam.id);
         allData[exam.id] = data;
       } catch (e) {
-        print('Error loading exam ${exam.id}: $e');
+        log('Error loading exam ${exam.id}: $e');
         allData[exam.id] = [];
       }
     }
@@ -125,7 +126,7 @@ class ExamDataService {
 
       return data;
     } catch (e) {
-      print('Error parsing CSV for exam $examId: $e');
+      log('Error parsing CSV for exam $examId: $e');
       return [];
     }
   }
@@ -157,7 +158,7 @@ class ExamDataService {
         'subjectOrder': subjectOrder,
       };
     } catch (e) {
-      print('Error parsing CSV for exam $examId: $e');
+      log('Error parsing CSV for exam $examId: $e');
       return {'data': [], 'subjectOrder': []};
     }
   }
