@@ -9,80 +9,83 @@ class SearchAndFilterSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Search Section
-            SearchBar(
-              hintText: '搜索学生姓名或学号...',
-              leading: const Icon(Icons.search),
-              onChanged: (value) => provider.updateSearchTerm(value),
-            ),
-            
-            const SizedBox(height: 16),
-            
-            // Exam Filter Chips
-            Text(
-              '选择考试',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.w600,
+    return SizedBox(
+      width: double.infinity, // 占满可用宽度
+      child: Card(
+        elevation: 2,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Search Section
+              SearchBar(
+                hintText: '搜索学生姓名或学号...',
+                leading: const Icon(Icons.search),
+                onChanged: (value) => provider.updateSearchTerm(value),
               ),
-            ),
-            const SizedBox(height: 8),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                _FilterChip(
-                  label: '全部考试',
-                  selected: provider.selectedExam == 'all',
-                  onSelected: (selected) {
-                    if (selected) provider.updateSelectedExam('all');
-                  },
+              
+              const SizedBox(height: 16),
+              
+              // Exam Filter Chips
+              Text(
+                '选择考试',
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
                 ),
-                ...provider.allExamInfo.map((exam) => _FilterChip(
-                  label: exam.name,
-                  selected: provider.selectedExam == exam.id,
-                  onSelected: (selected) {
-                    if (selected) provider.updateSelectedExam(exam.id);
-                  },
-                )),
-              ],
-            ),
-            
-            const SizedBox(height: 16),
-            
-            // Sort Section with Chips
-            Text(
-              '排序方式',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.w600,
               ),
-            ),
-            const SizedBox(height: 8),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                ...provider.getCurrentExamSortOptions().map((sortOption) {
-                  final subject = sortOption.substring(5); // Remove 'rank-' prefix
-                  final displayName = _getSortDisplayName(subject);
-                  
-                  return _FilterChip(
-                    label: displayName,
-                    selected: provider.sortBy == sortOption,
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  _FilterChip(
+                    label: '全部考试',
+                    selected: provider.selectedExam == 'all',
                     onSelected: (selected) {
-                      if (selected) provider.updateSortBy(sortOption);
+                      if (selected) provider.updateSelectedExam('all');
                     },
-                  );
-                }),
-              ],
-            ),
-          ],
+                  ),
+                  ...provider.allExamInfo.map((exam) => _FilterChip(
+                    label: exam.name,
+                    selected: provider.selectedExam == exam.id,
+                    onSelected: (selected) {
+                      if (selected) provider.updateSelectedExam(exam.id);
+                    },
+                  )),
+                ],
+              ),
+              
+              const SizedBox(height: 16),
+              
+              // Sort Section with Chips
+              Text(
+                '排序方式',
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  ...provider.getCurrentExamSortOptions().map((sortOption) {
+                    final subject = sortOption.substring(5); // Remove 'rank-' prefix
+                    final displayName = _getSortDisplayName(subject);
+                    
+                    return _FilterChip(
+                      label: displayName,
+                      selected: provider.sortBy == sortOption,
+                      onSelected: (selected) {
+                        if (selected) provider.updateSortBy(sortOption);
+                      },
+                    );
+                  }),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

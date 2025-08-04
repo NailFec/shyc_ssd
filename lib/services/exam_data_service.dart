@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:csv/csv.dart';
 import '../models/exam_data.dart';
@@ -57,7 +56,7 @@ class ExamDataService {
     
     // Add 等级 suffix variation
     if (!subject.endsWith('等级')) {
-      variations.add('${subject}等级');
+      variations.add('$subject等级');
     }
     
     // Add base subject if current has 等级 suffix

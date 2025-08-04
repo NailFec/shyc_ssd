@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import '../providers/exam_data_provider.dart';
 import '../widgets/search_and_filter.dart';
 import '../widgets/exam_data_table.dart';
-import '../widgets/stats_cards.dart';
 
 class ExamDataScreen extends StatefulWidget {
   const ExamDataScreen({super.key});
