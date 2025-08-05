@@ -41,62 +41,62 @@ class SearchAndFilterSection extends StatelessWidget {
                           },
                         ),
                     ],
-                    elevation: MaterialStateProperty.resolveWith<double>(
-                      (Set<MaterialState> states) {
-                        if (states.contains(MaterialState.focused)) {
+                    elevation: WidgetStateProperty.resolveWith<double>(
+                      (Set<WidgetState> states) {
+                        if (states.contains(WidgetState.focused)) {
                           return 6.0;
                         }
                         return 1.0;
                       },
                     ),
-                    backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                      (Set<MaterialState> states) {
+                    backgroundColor: WidgetStateProperty.resolveWith<Color?>(
+                      (Set<WidgetState> states) {
                         final colorScheme = Theme.of(context).colorScheme;
-                        if (states.contains(MaterialState.focused)) {
+                        if (states.contains(WidgetState.focused)) {
                           return colorScheme.surface;
                         }
                         return colorScheme.surfaceContainerHigh;
                       },
                     ),
-                    shadowColor: MaterialStateProperty.resolveWith<Color?>(
-                      (Set<MaterialState> states) {
+                    shadowColor: WidgetStateProperty.resolveWith<Color?>(
+                      (Set<WidgetState> states) {
                         return Theme.of(context).colorScheme.shadow;
                       },
                     ),
-                    surfaceTintColor: MaterialStateProperty.resolveWith<Color?>(
-                      (Set<MaterialState> states) {
+                    surfaceTintColor: WidgetStateProperty.resolveWith<Color?>(
+                      (Set<WidgetState> states) {
                         return Theme.of(context).colorScheme.surfaceTint;
                       },
                     ),
-                    overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                      (Set<MaterialState> states) {
+                    overlayColor: WidgetStateProperty.resolveWith<Color?>(
+                      (Set<WidgetState> states) {
                         final colorScheme = Theme.of(context).colorScheme;
-                        if (states.contains(MaterialState.pressed)) {
-                          return colorScheme.onSurface.withOpacity(0.1);
+                        if (states.contains(WidgetState.pressed)) {
+                          return colorScheme.onSurface.withValues(alpha: 0.1);
                         }
-                        if (states.contains(MaterialState.hovered)) {
-                          return colorScheme.onSurface.withOpacity(0.08);
+                        if (states.contains(WidgetState.hovered)) {
+                          return colorScheme.onSurface.withValues(alpha: 0.08);
                         }
                         return null;
                       },
                     ),
-                    side: MaterialStateProperty.resolveWith<BorderSide?>(
-                      (Set<MaterialState> states) {
+                    side: WidgetStateProperty.resolveWith<BorderSide?>(
+                      (Set<WidgetState> states) {
                         return BorderSide.none;
                       },
                     ),
-                    shape: MaterialStateProperty.all<OutlinedBorder>(
+                    shape: WidgetStateProperty.all<OutlinedBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(28.0),
                       ),
                     ),
-                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                    padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
                       const EdgeInsets.symmetric(horizontal: 16.0),
                     ),
-                    textStyle: MaterialStateProperty.all<TextStyle?>(
+                    textStyle: WidgetStateProperty.all<TextStyle?>(
                       Theme.of(context).textTheme.bodyLarge,
                     ),
-                    hintStyle: MaterialStateProperty.all<TextStyle?>(
+                    hintStyle: WidgetStateProperty.all<TextStyle?>(
                       Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),

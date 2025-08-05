@@ -92,7 +92,7 @@ class StudentExamDetail extends StatelessWidget {
             borderRadius: BorderRadius.circular(6),
           ),
           child: Text(
-            '第${totalRank}名',
+            '第$totalRank名',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               fontWeight: FontWeight.bold,
               color: Theme.of(context).colorScheme.onPrimaryContainer,
@@ -166,7 +166,7 @@ class StudentExamDetail extends StatelessWidget {
               // 排名
               Expanded(
                 child: Text(
-                  rank != null ? '第${rank}名' : '--',
+                  rank != null ? '第$rank名' : '--',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: rank != null ? Theme.of(context).colorScheme.onSurface : Theme.of(context).colorScheme.onSurfaceVariant,
                     fontWeight: FontWeight.w600,

@@ -155,7 +155,7 @@ class RankChartPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round;
 
     final fillPaint = Paint()
-      ..color = colorScheme.primary.withOpacity(0.1)
+      ..color = colorScheme.primary.withValues(alpha: 0.1)
       ..style = PaintingStyle.fill;
 
     final pointPaint = Paint()
