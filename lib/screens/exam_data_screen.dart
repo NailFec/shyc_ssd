@@ -46,11 +46,18 @@ class _ExamDataScreenState extends State<ExamDataScreen> {
         elevation: 0,
         centerTitle: false,
         actions: [
-          IconButton.filledTonal(
-            onPressed: () {
-              Navigator.pushNamed(context, '/about');
-            },
-            icon: const Icon(Icons.info_outline),
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/about');
+              },
+              icon: Icon(
+                Icons.info_outline,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+              tooltip: '关于系统',
+            ),
           ),
         ],
       ),
