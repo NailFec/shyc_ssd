@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../providers/exam_data_provider.dart';
 import '../widgets/search_and_filter.dart';
 import '../widgets/exam_data_table.dart';
+import '../widgets/app_drawer.dart';
 
 class ExamDataScreen extends StatefulWidget {
   const ExamDataScreen({super.key});
@@ -23,6 +24,7 @@ class _ExamDataScreenState extends State<ExamDataScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(),
       appBar: AppBar(
         title: Row(
           children: [
@@ -46,18 +48,9 @@ class _ExamDataScreenState extends State<ExamDataScreen> {
         actions: [
           IconButton.filledTonal(
             onPressed: () {
-              // 可以添加设置或帮助功能
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: const Text('系统功能开发中...'),
-                  behavior: SnackBarBehavior.floating,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-              );
+              Navigator.pushNamed(context, '/about');
             },
-            icon: const Icon(Icons.help_outline),
+            icon: const Icon(Icons.info_outline),
           ),
         ],
       ),

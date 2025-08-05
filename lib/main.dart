@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/exam_data_provider.dart';
 import 'screens/exam_data_screen.dart';
+import 'screens/home_screen.dart';
+import 'screens/about_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +19,12 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: '学生考试成绩分析系统',
         debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const HomeScreen(),
+          '/exam-data': (context) => const ExamDataScreen(),
+          '/about': (context) => const AboutScreen(),
+        },
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(
@@ -78,7 +86,6 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: const ExamDataScreen(),
       ),
     );
   }
