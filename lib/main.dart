@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/exam_data_provider.dart';
+import 'providers/student_data_provider.dart';
 import 'screens/exam_data_screen.dart';
+import 'screens/student_data_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/about_screen.dart';
 
@@ -14,8 +16,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => ExamDataProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ExamDataProvider()),
+        ChangeNotifierProvider(create: (context) => StudentDataProvider()),
+      ],
       child: MaterialApp(
         title: '学生考试成绩分析系统',
         debugShowCheckedModeBanner: false,
@@ -23,6 +28,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => const HomeScreen(),
           '/exam-data': (context) => const ExamDataScreen(),
+          '/student-data': (context) => const StudentDataScreen(),
           '/about': (context) => const AboutScreen(),
         },
         theme: ThemeData(

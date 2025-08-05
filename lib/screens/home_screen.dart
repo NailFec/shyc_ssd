@@ -83,12 +83,8 @@ class HomeScreen extends StatelessWidget {
                      context,
                      icon: Icons.people_outline,
                      title: '学生数据',
-                     description: '管理学生信息和班级数据',
-                     onTap: () {
-                       ScaffoldMessenger.of(context).showSnackBar(
-                         const SnackBar(content: Text('功能开发中...')),
-                       );
-                     },
+                     description: '查看学生个人成绩趋势和详细记录',
+                     onTap: () => Navigator.pushNamed(context, '/student-data'),
                    ),
                    _buildFeatureCard(
                      context,

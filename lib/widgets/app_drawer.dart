@@ -67,10 +67,7 @@ class AppDrawer extends StatelessWidget {
                    icon: Icons.people_outline,
                    title: '学生数据',
                    onTap: () {
-                     Navigator.pop(context);
-                     ScaffoldMessenger.of(context).showSnackBar(
-                       const SnackBar(content: Text('功能开发中...')),
-                     );
+                     Navigator.pushNamed(context, '/student-data');
                    },
                  ),
                  _buildDrawerItem(
