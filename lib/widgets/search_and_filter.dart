@@ -112,8 +112,8 @@ class SearchAndFilterSection extends StatelessWidget {
                   final suggestions = provider.filteredData
                       .where((student) => 
                           student.name.toLowerCase().contains(controller.text.toLowerCase()) ||
-                          student.id.toLowerCase().contains(controller.text.toLowerCase()))
-                      .map((student) => '${student.name} (${student.id})')
+                          student.studentId.toLowerCase().contains(controller.text.toLowerCase()))
+                      .map((student) => '${student.name} (${student.studentId})')
                       .toList();
                   
                   return suggestions.map((suggestion) => ListTile(
