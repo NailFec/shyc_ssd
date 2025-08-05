@@ -19,10 +19,112 @@ class SearchAndFilterSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Search Section
-              SearchBar(
-                hintText: '搜索学生姓名或学号...',
-                leading: const Icon(Icons.search),
-                onChanged: (value) => provider.updateSearchTerm(value),
+              SearchAnchor(
+                builder: (BuildContext context, SearchController controller) {
+                  return SearchBar(
+                    controller: controller,
+                    hintText: '搜索学生姓名或学号...',
+                    leading: const Icon(Icons.search),
+                    onTap: () {
+                      controller.openView();
+                    },
+                    onChanged: (value) {
+                      provider.updateSearchTerm(value);
+                    },
+                    trailing: <Widget>[
+                      if (provider.searchTerm.isNotEmpty)
+                        IconButton(
+                          icon: const Icon(Icons.clear),
+                          onPressed: () {
+                            controller.clear();
+                            provider.updateSearchTerm('');
+                          },
+                        ),
+                    ],
+                    elevation: MaterialStateProperty.resolveWith<double>(
+                      (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.focused)) {
+                          return 6.0;
+                        }
+                        return 1.0;
+                      },
+                    ),
+                    backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                      (Set<MaterialState> states) {
+                        final colorScheme = Theme.of(context).colorScheme;
+                        if (states.contains(MaterialState.focused)) {
+                          return colorScheme.surface;
+                        }
+                        return colorScheme.surfaceContainerHigh;
+                      },
+                    ),
+                    shadowColor: MaterialStateProperty.resolveWith<Color?>(
+                      (Set<MaterialState> states) {
+                        return Theme.of(context).colorScheme.shadow;
+                      },
+                    ),
+                    surfaceTintColor: MaterialStateProperty.resolveWith<Color?>(
+                      (Set<MaterialState> states) {
+                        return Theme.of(context).colorScheme.surfaceTint;
+                      },
+                    ),
+                    overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                      (Set<MaterialState> states) {
+                        final colorScheme = Theme.of(context).colorScheme;
+                        if (states.contains(MaterialState.pressed)) {
+                          return colorScheme.onSurface.withOpacity(0.1);
+                        }
+                        if (states.contains(MaterialState.hovered)) {
+                          return colorScheme.onSurface.withOpacity(0.08);
+                        }
+                        return null;
+                      },
+                    ),
+                    side: MaterialStateProperty.resolveWith<BorderSide?>(
+                      (Set<MaterialState> states) {
+                        return BorderSide.none;
+                      },
+                    ),
+                    shape: MaterialStateProperty.all<OutlinedBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(28.0),
+                      ),
+                    ),
+                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                      const EdgeInsets.symmetric(horizontal: 16.0),
+                    ),
+                    textStyle: MaterialStateProperty.all<TextStyle?>(
+                      Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    hintStyle: MaterialStateProperty.all<TextStyle?>(
+                      Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  );
+                },
+                suggestionsBuilder: (BuildContext context, SearchController controller) {
+                  // Return search suggestions based on current exam data
+                  if (controller.text.isEmpty) {
+                    return <Widget>[];
+                  }
+                  
+                  final suggestions = provider.filteredData
+                      .where((student) => 
+                          student.name.toLowerCase().contains(controller.text.toLowerCase()) ||
+                          student.id.toLowerCase().contains(controller.text.toLowerCase()))
+                      .map((student) => '${student.name} (${student.id})')
+                      .toList();
+                  
+                  return suggestions.map((suggestion) => ListTile(
+                    leading: const Icon(Icons.person),
+                    title: Text(suggestion),
+                    onTap: () {
+                      controller.closeView(suggestion);
+                      provider.updateSearchTerm(suggestion.split(' ')[0]); // Use just the name
+                    },
+                  )).toList();
+                },
               ),
               
               const SizedBox(height: 16),
