@@ -1,16 +1,45 @@
-# shyc_ssd
+# 学生考试成绩分析系统
 
-A new Flutter project.
+一个基于Flutter开发的学生考试成绩分析系统，提供详细的考试成绩数据分析和可视化展示。
 
-## Getting Started
+## 功能特性
 
-This project is a starting point for a Flutter application.
+- 📊 **考试成绩分析** - 提供详细的考试成绩数据分析和可视化展示
+- 🔍 **搜索和筛选** - 支持按多种条件搜索和筛选学生成绩数据
+- 📈 **统计图表** - 生成直观的统计图表，帮助理解数据趋势
+- 📱 **跨平台支持** - 支持Web、Android、iOS等多个平台
 
-A few resources to get you started if this is your first Flutter project:
+## 技术栈
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **开发框架**: Flutter
+- **编程语言**: Dart
+- **状态管理**: Provider
+- **图表库**: fl_chart
+- **UI组件**: Material Design 3
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 版本信息
+
+当前版本: 2.0.0
+
+## 开始使用
+
+1. 确保已安装Flutter开发环境
+2. 克隆项目到本地
+3. 运行 `flutter pub get` 安装依赖
+4. 运行 `flutter run` 启动应用
+
+## 项目结构
+
+```
+lib/
+├── main.dart              # 应用入口
+├── models/                # 数据模型
+├── providers/             # 状态管理
+├── screens/               # 页面界面
+├── services/              # 数据服务
+└── widgets/               # 自定义组件
+```
+
+## 许可证
+
+本项目采用 Apache License 2.0 许可证。

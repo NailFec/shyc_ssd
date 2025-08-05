@@ -370,37 +370,54 @@ class _StudentDataScreenState extends State<StudentDataScreen> {
   Widget _buildStudentCard(BuildContext context, student) {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-          child: Text(
-            student.name[0],
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.onPrimaryContainer,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        title: Text(
-          student.name,
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        subtitle: Text(
-          '学号: ${student.studentId}',
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onSurfaceVariant,
-          ),
-        ),
-        trailing: Icon(
-          Icons.arrow_forward_ios,
-          color: Theme.of(context).colorScheme.onSurfaceVariant,
-          size: 16,
-        ),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12), // 设置圆角
         onTap: () {
           context.read<StudentDataProvider>().selectStudent(student);
         },
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            children: [
+              CircleAvatar(
+                backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+                child: Text(
+                  student.name[0],
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      student.name,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      '学号: ${student.studentId}',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                size: 16,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

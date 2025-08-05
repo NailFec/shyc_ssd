@@ -39,7 +39,7 @@ class AboutScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    '版本 1.0.0',
+                    '版本 2.0.0',
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
@@ -88,7 +88,7 @@ class AboutScreen extends StatelessWidget {
             const Spacer(),
             Center(
               child: Text(
-                '© 2024 学生考试成绩分析系统',
+                '© 2025 学生考试成绩分析系统',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),

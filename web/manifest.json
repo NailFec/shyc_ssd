@@ -1,11 +1,11 @@
 {
-    "name": "shyc_ssd",
-    "short_name": "shyc_ssd",
+    "name": "学生考试成绩分析系统",
+    "short_name": "成绩分析",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "学生考试成绩分析系统 - 提供详细的考试成绩数据分析和可视化展示",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
