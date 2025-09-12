@@ -4,6 +4,7 @@ import '../providers/student_data_provider.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/student_rank_chart.dart';
 import '../widgets/student_exam_detail.dart';
+import '../widgets/student_avatar.dart';
 
 class StudentDataScreen extends StatefulWidget {
   const StudentDataScreen({super.key});
@@ -296,23 +297,15 @@ class _StudentDataScreenState extends State<StudentDataScreen> {
                   if (controller.text.isEmpty) {
                     return <Widget>[];
                   }
-                  
-                  final suggestions = provider.filteredStudents
-                      .where((student) => 
-                          student.name.toLowerCase().contains(controller.text.toLowerCase()) ||
-                          student.studentId.toLowerCase().contains(controller.text.toLowerCase()))
-                      .map((student) => '${student.name} (${student.studentId})')
+                  final lower = controller.text.toLowerCase();
+                  final matches = provider.filteredStudents
+                      .where((s) => s.name.toLowerCase().contains(lower) || s.studentId.toLowerCase().contains(lower))
                       .toList();
-                  
-                  return suggestions.map((suggestion) => ListTile(
-                    leading: const Icon(Icons.person),
-                    title: Text(suggestion),
+                  return matches.map((student) => ListTile(
+                    leading: StudentAvatar(studentId: student.studentId, name: student.name, size: 28),
+                    title: Text('${student.name} (${student.studentId})'),
                     onTap: () {
-                      controller.closeView(suggestion);
-                      final studentName = suggestion.split(' ')[0];
-                      final student = provider.filteredStudents.firstWhere(
-                        (s) => s.name == studentName,
-                      );
+                      controller.closeView('${student.name} (${student.studentId})');
                       provider.selectStudent(student);
                     },
                   )).toList();
@@ -379,16 +372,8 @@ class _StudentDataScreenState extends State<StudentDataScreen> {
           padding: const EdgeInsets.all(16.0),
           child: Row(
             children: [
-              CircleAvatar(
-                backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                child: Text(
-                  student.name[0],
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onPrimaryContainer,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+              const SizedBox(width: 2),
+              StudentAvatar(studentId: student.studentId, name: student.name, size: 36),
               const SizedBox(width: 16),
               Expanded(
                 child: Column(
@@ -432,18 +417,7 @@ class _StudentDataScreenState extends State<StudentDataScreen> {
             padding: const EdgeInsets.all(20),
             child: Row(
               children: [
-                CircleAvatar(
-                  radius: 30,
-                  backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                  child: Text(
-                    student.name[0],
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimaryContainer,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                    ),
-                  ),
-                ),
+                StudentAvatar(studentId: student.studentId, name: student.name, size: 60),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Column(

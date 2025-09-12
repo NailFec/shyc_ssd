@@ -3,6 +3,7 @@ import '../models/exam_data.dart';
 import '../services/exam_data_service.dart';
 import '../providers/exam_data_provider.dart';
 import 'package:provider/provider.dart';
+import 'student_avatar.dart';
 
 class ExamDataTable extends StatefulWidget {
   final List<ExamData> data;
@@ -132,7 +133,13 @@ class _ExamDataTableState extends State<ExamDataTable> {
                     return DataRow(
                       cells: [
                         DataCell(Text(exam.studentId)),
-                        DataCell(Text(exam.name)),
+                        DataCell(Row(
+                          children: [
+                            StudentAvatar(studentId: exam.studentId, name: exam.name, size: 28),
+                            const SizedBox(width: 8),
+                            Flexible(child: Text(exam.name)),
+                          ],
+                        )),
                         ...displaySubjects.map((subject) => 
                           DataCell(_buildScoreCell(exam, subject)),
                         ),
