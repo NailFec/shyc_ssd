@@ -13,6 +13,9 @@ class ExamDataService {
     ExamInfo(id: '199', name: '高二上期末'),
     ExamInfo(id: '227', name: '高二下期中'),
     ExamInfo(id: '256', name: '高二下期末'),
+    ExamInfo(id: '272', name: '高三上月考一'),
+    ExamInfo(id: '282', name: '高三上期中'),
+    ExamInfo(id: '295', name: '高三上一模'),
   ];
 
   // Get subjects dynamically from CSV headers

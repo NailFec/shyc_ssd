@@ -134,6 +134,9 @@ class StudentDataService {
       '199': DateTime(2024, 2, 1),  // 高二上期末
       '227': DateTime(2024, 3, 1),  // 高二下期中
       '256': DateTime(2024, 4, 1),  // 高二下期末
+      '272': DateTime(2024, 5, 1),  // 高三上月考一
+      '282': DateTime(2024, 6, 1),  // 高三上期中
+      '295': DateTime(2024, 7, 1),  // 高三上一模
     };
     
     return dateMap[examId] ?? DateTime.now();

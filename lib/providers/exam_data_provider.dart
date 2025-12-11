@@ -11,7 +11,7 @@ class ExamDataProvider with ChangeNotifier {
   ExamStats? _stats;
   
   String _searchTerm = '';
-  String _selectedExam = '256'; // 默认选择最后一个考试（高二下期末）
+  String _selectedExam = ExamDataService.examList.last.id; // 默认选择最新考试
   String _sortBy = 'rank-六门折算总分';
   
   bool _isLoading = false;
